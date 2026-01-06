@@ -462,21 +462,10 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     
-    <!-- EmailJS -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
     <script>
         // =============================================
-        // CONFIGURATION - À MODIFIER
+        // CONFIGURATION FIREBASE
         // =============================================
-        
-        // EmailJS - Remplacez par vos identifiants
-        const EMAILJS_PUBLIC_KEY = "VOTRE_PUBLIC_KEY";      // Votre clé publique EmailJS
-        const EMAILJS_SERVICE_ID = "VOTRE_SERVICE_ID";       // ID du service email
-        const EMAILJS_TEMPLATE_ID = "VOTRE_TEMPLATE_ID";     // ID du template
-        
-        // Email destinataire (pour info, configuré dans le template EmailJS)
-        const EMAIL_DESTINATAIRE = "gundershoffenaappma@gmail.com";
         
         // Firebase - Base de données de l'appli contrôleur
         const firebaseConfig = {
@@ -488,9 +477,6 @@
         // =============================================
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.database(app);
-        
-        // Initialiser EmailJS
-        emailjs.init(EMAILJS_PUBLIC_KEY);
         
         // =============================================
         // RÈGLEMENTS
@@ -662,7 +648,7 @@
             document.getElementById('loading').classList.add('visible');
             
             try {
-                // 1. Enregistrer dans Firebase
+                // Enregistrer dans Firebase
                 const ficheData = {
                     nom: nom,
                     prenom: prenom,
@@ -670,7 +656,7 @@
                     codePostal: codePostal,
                     ville: ville,
                     telephone: telephone,
-                    email: email || '',
+                    email: email,
                     urgence: {
                         nom: urgenceNom,
                         prenom: urgencePrenom,
@@ -684,26 +670,6 @@
                 
                 await db.ref('fiches').push(ficheData);
                 console.log('✅ Fiche enregistrée dans Firebase');
-                
-                // 2. Envoyer l'email
-                const templateParams = {
-                    to_email: EMAIL_DESTINATAIRE,
-                    nom: nom,
-                    prenom: prenom,
-                    adresse: adresse,
-                    code_postal: codePostal,
-                    ville: ville,
-                    telephone: telephone,
-                    email: email,
-                    urgence_nom: urgenceNom,
-                    urgence_prenom: urgencePrenom,
-                    urgence_tel: urgenceTel,
-                    reglements: reglementsValides.join(', '),
-                    date_inscription: dateInscription
-                };
-                
-                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-                console.log('✅ Email envoyé');
                 
                 // Masquer le loading
                 document.getElementById('loading').classList.remove('visible');
