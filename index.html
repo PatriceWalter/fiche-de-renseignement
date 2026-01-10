@@ -79,6 +79,10 @@
             border-color: #2d5a3d;
             box-shadow: 0 0 0 3px rgba(45,90,61,0.1);
         }
+        .form-group input.prefilled {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
         
         .form-row {
             display: grid;
@@ -312,6 +316,17 @@
         @keyframes spin { to { transform: rotate(360deg); } }
         .loading-text { margin-top: 15px; font-weight: 600; color: #333; }
         
+        .prefill-notice {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #2e7d32;
+            text-align: center;
+        }
+        
         @media (max-width: 500px) {
             .form-row { grid-template-columns: 1fr; }
             .reglement-item { flex-wrap: wrap; }
@@ -331,6 +346,11 @@
             <!-- Formulaire -->
             <div id="formPage">
                 <h1 class="page-title">📋 Fiche de Renseignement</h1>
+                
+                <div id="prefillNotice" class="prefill-notice" style="display:none;">
+                    ✅ Votre adresse email a été pré-remplie
+                </div>
+                
                 <form id="ficheForm">
                     <div class="form-section-title">👤 Informations du pêcheur</div>
                     <div class="form-group required">
@@ -466,8 +486,6 @@
         // =============================================
         // CONFIGURATION FIREBASE
         // =============================================
-        
-        // Firebase - Base de données de l'appli contrôleur
         const firebaseConfig = {
             databaseURL: "https://appli-controleur-gunder-default-rtdb.europe-west1.firebasedatabase.app"
         };
@@ -477,6 +495,38 @@
         // =============================================
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.database(app);
+        
+        // =============================================
+        // LECTURE PARAMÈTRES URL (email pré-rempli)
+        // =============================================
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                email: params.get('email'),
+                nom: params.get('nom'),
+                prenom: params.get('prenom')
+            };
+        }
+        
+        // Pré-remplir les champs si paramètres présents
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = getUrlParams();
+            
+            if (params.email) {
+                const emailField = document.getElementById('email');
+                emailField.value = params.email;
+                emailField.classList.add('prefilled');
+                document.getElementById('prefillNotice').style.display = 'block';
+            }
+            
+            if (params.nom) {
+                document.getElementById('nom').value = params.nom;
+            }
+            
+            if (params.prenom) {
+                document.getElementById('prenom').value = params.prenom;
+            }
+        });
         
         // =============================================
         // RÈGLEMENTS
