@@ -13,19 +13,19 @@
             padding: 20px;
         }
         
-        .container { max-width: 600px; margin: 0 auto; }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
         
         .header {
             text-align: center;
             color: white;
             margin-bottom: 25px;
-            position: relative;
         }
         .header-logo { font-size: 50px; margin-bottom: 10px; }
         .header-title { font-size: 24px; font-weight: 700; margin-bottom: 5px; }
         .header-subtitle { font-size: 14px; opacity: 0.9; }
-        .admin-gear { position: absolute; top: 0; right: 0; font-size: 1.5em; cursor: pointer; opacity: 0.7; transition: 0.3s; }
-        .admin-gear:hover { opacity: 1; transform: rotate(90deg); }
         
         .card {
             background: white;
@@ -61,7 +61,10 @@
             margin-bottom: 6px;
             font-size: 14px;
         }
-        .form-group.required label::after { content: " *"; color: #c62828; }
+        .form-group.required label::after {
+            content: " *";
+            color: #c62828;
+        }
         
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
@@ -76,10 +79,18 @@
             border-color: #2d5a3d;
             box-shadow: 0 0 0 3px rgba(45,90,61,0.1);
         }
-        .form-group input.prefilled { background: #e8f5e9; border-color: #4caf50; }
+        .form-group input.prefilled {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
         
-        .form-row { display: grid; grid-template-columns: 1fr 2fr; gap: 15px; }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+        }
         
+        /* Règlements */
         .reglement-list { margin-top: 10px; }
         .reglement-item {
             display: flex;
@@ -92,8 +103,15 @@
             border: 2px solid transparent;
             transition: all 0.3s;
         }
-        .reglement-item.checked { background: #e8f5e9; border-color: #4caf50; }
-        .reglement-checkbox { width: 22px; height: 22px; cursor: pointer; }
+        .reglement-item.checked {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+        .reglement-checkbox {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+        }
         .reglement-icon { font-size: 24px; }
         .reglement-name { flex: 1; font-weight: 600; color: #333; }
         .reglement-read-btn {
@@ -105,12 +123,30 @@
             cursor: not-allowed;
             transition: all 0.3s;
         }
-        .reglement-read-btn:not(:disabled) { background: #2d5a3d; color: white; cursor: pointer; }
-        .reglement-read-btn:not(:disabled):hover { background: #1a472a; }
-        .reglement-status { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
-        .reglement-status.read { background: #e8f5e9; color: #2e7d32; }
-        .reglement-status.unread { background: #ffebee; color: #c62828; }
+        .reglement-read-btn:not(:disabled) {
+            background: #2d5a3d;
+            color: white;
+            cursor: pointer;
+        }
+        .reglement-read-btn:not(:disabled):hover {
+            background: #1a472a;
+        }
+        .reglement-status {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .reglement-status.read {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .reglement-status.unread {
+            background: #ffebee;
+            color: #c62828;
+        }
         
+        /* Bouton */
         .btn-submit {
             width: 100%;
             padding: 18px;
@@ -124,9 +160,16 @@
             margin-top: 25px;
             transition: all 0.3s;
         }
-        .btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(45,90,61,0.3); }
-        .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(45,90,61,0.3);
+        }
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
         
+        /* Modal règlement */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -143,12 +186,11 @@
             border-radius: 20px;
             max-width: 700px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 85vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
-        .modal-content.large { max-width: 800px; }
         .modal-header {
             background: linear-gradient(135deg, #2d5a3d 0%, #4a8c5c 100%);
             color: white;
@@ -176,19 +218,11 @@
             line-height: 1.7;
         }
         .modal-body h3 { color: #1a472a; margin: 20px 0 10px; font-size: 16px; }
-        .modal-body h3:first-child { margin-top: 0; }
         .modal-body ul { margin-left: 20px; margin-bottom: 15px; }
         .modal-body li { margin-bottom: 5px; }
         .modal-body .important { background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800; margin: 15px 0; }
-        .modal-body .interdit { color: #c62828; }
-        .modal-body .contact-box { background: #e8f5e9; padding: 15px; border-radius: 10px; margin-top: 15px; }
-        
-        .modal-progress-container { padding: 0 20px; background: #f5f5f5; }
-        .modal-progress { background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden; }
-        .modal-progress-bar { background: #2d5a3d; height: 100%; width: 0%; transition: width 0.3s; }
-        .modal-progress-status { text-align: center; padding: 10px; font-size: 12px; color: #666; }
-        .modal-progress-status.complete { color: #2e7d32; font-weight: bold; }
-        
+        .modal-body .warning { background: #ffebee; padding: 15px; border-radius: 10px; border-left: 4px solid #f44336; margin: 15px 0; }
+        .modal-body .info { background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3; margin: 15px 0; }
         .modal-footer {
             padding: 20px;
             border-top: 1px solid #eee;
@@ -201,11 +235,7 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
         }
-        .read-confirm-checkbox.disabled { opacity: 0.5; cursor: not-allowed; }
         .read-confirm-checkbox input { width: 20px; height: 20px; }
         .modal-validate-btn {
             width: 100%;
@@ -218,21 +248,12 @@
             font-weight: 700;
             cursor: pointer;
         }
-        .modal-validate-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .modal-validate-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
         
-        .admin-tabs { display: flex; border-bottom: 2px solid #e0e0e0; margin-bottom: 20px; flex-wrap: wrap; }
-        .admin-tab { padding: 12px 15px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; font-weight: 600; color: #666; transition: 0.3s; font-size: 13px; }
-        .admin-tab:hover { color: #2d5a3d; }
-        .admin-tab.active { color: #2d5a3d; border-bottom-color: #2d5a3d; }
-        .admin-tab-content { display: none; max-height: 400px; overflow-y: auto; }
-        .admin-tab-content.active { display: block; }
-        .admin-section { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
-        .admin-section h4 { color: #2d5a3d; margin-bottom: 10px; font-size: 14px; }
-        .admin-section textarea { min-height: 80px; font-size: 13px; }
-        .admin-btn { padding: 12px 25px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
-        .admin-btn.primary { background: #2d5a3d; color: white; }
-        .admin-btn.secondary { background: #6c757d; color: white; }
-        
+        /* Alert */
         .alert {
             position: fixed;
             top: 20px;
@@ -249,14 +270,30 @@
         .alert.visible { transform: translateX(-50%) translateY(0); }
         .alert-success { background: #e8f5e9; color: #2e7d32; border: 2px solid #4caf50; }
         .alert-error { background: #ffebee; color: #c62828; border: 2px solid #f44336; }
+        .alert-info { background: #e3f2fd; color: #1565c0; border: 2px solid #2196f3; }
         
-        .success-page { display: none; text-align: center; padding: 40px 20px; }
+        /* Success page */
+        .success-page {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
         .success-page.visible { display: block; }
         .success-icon { font-size: 80px; margin-bottom: 20px; }
         .success-title { font-size: 24px; color: #2e7d32; margin-bottom: 15px; font-weight: 700; }
         .success-message { color: #666; line-height: 1.6; margin-bottom: 25px; }
-        .success-btn { padding: 15px 30px; background: #2d5a3d; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; }
+        .success-btn {
+            padding: 15px 30px;
+            background: #2d5a3d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
         
+        /* Loading */
         .loading-overlay {
             display: none;
             position: fixed;
@@ -268,7 +305,14 @@
             flex-direction: column;
         }
         .loading-overlay.visible { display: flex; }
-        .spinner { width: 50px; height: 50px; border: 4px solid #e0e0e0; border-top-color: #2d5a3d; border-radius: 50%; animation: spin 1s linear infinite; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e0e0e0;
+            border-top-color: #2d5a3d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
         @keyframes spin { to { transform: rotate(360deg); } }
         .loading-text { margin-top: 15px; font-weight: 600; color: #333; }
         
@@ -287,20 +331,19 @@
             .form-row { grid-template-columns: 1fr; }
             .reglement-item { flex-wrap: wrap; }
             .reglement-read-btn { width: 100%; margin-top: 10px; }
-            .admin-tab { padding: 10px 12px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <span class="admin-gear" onclick="openAdminModal()">⚙️</span>
             <div class="header-logo">🎣</div>
             <div class="header-title">AAPPMA Gundershoffen</div>
             <div class="header-subtitle">Fiche de Renseignement Pêcheur</div>
         </div>
         
         <div class="card">
+            <!-- Formulaire -->
             <div id="formPage">
                 <h1 class="page-title">📋 Fiche de Renseignement</h1>
                 
@@ -382,7 +425,7 @@
                         </div>
                     </div>
                     <p style="font-size: 12px; color: #666; margin-top: 10px; text-align: center;">
-                        ⚠️ Vous devez cocher au moins un règlement, puis le lire entièrement et confirmer la lecture
+                        ⚠️ Vous devez cocher au moins un règlement, puis le lire et confirmer la lecture
                     </p>
                     
                     <button type="submit" class="btn-submit" id="submitBtn" disabled>
@@ -391,6 +434,7 @@
                 </form>
             </div>
             
+            <!-- Page de succès -->
             <div id="successPage" class="success-page">
                 <div class="success-icon">✅</div>
                 <div class="success-title">Fiche envoyée avec succès !</div>
@@ -398,7 +442,7 @@
                     Votre fiche de renseignement a été enregistrée et envoyée à l'AAPPMA Gundershoffen.<br><br>
                     Merci pour votre inscription !
                 </div>
-                <button class="success-btn" onclick="window.close()">Fermer</button>
+                <button class="success-btn" onclick="location.reload()">Nouvelle fiche</button>
             </div>
         </div>
         
@@ -412,16 +456,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalTitle">📜 Règlement</h2>
-                <button class="modal-close" onclick="closeReglementModal()">&times;</button>
+                <button class="modal-close" id="modalClose">&times;</button>
             </div>
-            <div class="modal-body" id="modalBody" onscroll="checkModalScroll()"></div>
-            <div class="modal-progress-container">
-                <div class="modal-progress"><div class="modal-progress-bar" id="modalProgressBar"></div></div>
-                <div class="modal-progress-status" id="modalProgressStatus">⬇️ Faites défiler pour lire le règlement complet</div>
-            </div>
+            <div class="modal-body" id="modalBody"></div>
             <div class="modal-footer">
-                <label class="read-confirm-checkbox disabled" id="readConfirmLabel">
-                    <input type="checkbox" id="readConfirmCheckbox" disabled>
+                <label class="read-confirm-checkbox">
+                    <input type="checkbox" id="readConfirmCheckbox">
                     <span>J'ai lu et compris le règlement</span>
                 </label>
                 <button class="modal-validate-btn" id="modalValidateBtn" disabled>✅ Confirmer la lecture</button>
@@ -429,225 +469,104 @@
         </div>
     </div>
     
-    <!-- Modal Admin -->
-    <div class="modal-overlay" id="adminModal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h2>⚙️ Administration des règlements</h2>
-                <button class="modal-close" onclick="closeAdminModal()">&times;</button>
-            </div>
-            <div class="modal-body" style="max-height: none;">
-                <div id="adminPasswordSection">
-                    <div style="text-align: center; padding: 20px;">
-                        <div style="font-size: 50px; margin-bottom: 15px;">🔐</div>
-                        <h3 style="margin-bottom: 20px;">Accès protégé</h3>
-                        <div class="form-group">
-                            <input type="password" id="adminPassword" placeholder="Mot de passe" style="max-width: 300px; margin: 0 auto;" onkeyup="if(event.key==='Enter')checkAdminPassword()">
-                        </div>
-                        <p id="adminPasswordError" style="color: #c62828; display: none; margin-bottom: 15px;">❌ Mot de passe incorrect</p>
-                        <button class="admin-btn primary" onclick="checkAdminPassword()">Valider</button>
-                    </div>
-                </div>
-                
-                <div id="adminContentSection" style="display: none;">
-                    <p style="background: #fff3e0; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 12px;">
-                        💡 Utilisez <strong>-</strong> au début d'une ligne pour une liste, <strong>⚠️</strong> pour un avertissement, <strong>❌</strong> pour une interdiction
-                    </p>
-                    
-                    <div class="admin-tabs">
-                        <div class="admin-tab active" onclick="switchAdminTab('carpodrome')">🎣 Carpodrome</div>
-                        <div class="admin-tab" onclick="switchAdminTab('hardt')">🐟 Hardt</div>
-                        <div class="admin-tab" onclick="switchAdminTab('breitmatt')">🌊 Breitmatt</div>
-                    </div>
-                    
-                    <div class="admin-tab-content active" id="tabCarpodrome">
-                        <div class="admin-section"><h4>🗓️ Périodes et horaires</h4><textarea id="carpodrome_horaires"></textarea></div>
-                        <div class="admin-section"><h4>🎫 Réservation et tarifs</h4><textarea id="carpodrome_tarifs"></textarea></div>
-                        <div class="admin-section"><h4>🎣 Modalités de pêche</h4><textarea id="carpodrome_modalites"></textarea></div>
-                        <div class="admin-section"><h4>👶 Pêche des mineurs</h4><textarea id="carpodrome_mineurs"></textarea></div>
-                        <div class="admin-section"><h4>👮 Contrôles et sanctions</h4><textarea id="carpodrome_sanctions"></textarea></div>
-                        <div class="admin-section"><h4>⛔ Interdictions</h4><textarea id="carpodrome_interdictions"></textarea></div>
-                        <div class="admin-section"><h4>🗑️ Gestion des déchets</h4><textarea id="carpodrome_dechets"></textarea></div>
-                        <div class="admin-section"><h4>📞 Contacts</h4><textarea id="carpodrome_contacts"></textarea></div>
-                    </div>
-                    
-                    <div class="admin-tab-content" id="tabHardt">
-                        <div class="admin-section"><h4>🗓️ Périodes et horaires</h4><textarea id="hardt_horaires"></textarea></div>
-                        <div class="admin-section"><h4>🎫 Cartes et tarifs</h4><textarea id="hardt_tarifs"></textarea></div>
-                        <div class="admin-section"><h4>🎣 Modalités de pêche</h4><textarea id="hardt_modalites"></textarea></div>
-                        <div class="admin-section"><h4>🌙 Pêche de nuit</h4><textarea id="hardt_nuit"></textarea></div>
-                        <div class="admin-section"><h4>👶 Pêche des mineurs</h4><textarea id="hardt_mineurs"></textarea></div>
-                        <div class="admin-section"><h4>👮 Contrôles et sanctions</h4><textarea id="hardt_sanctions"></textarea></div>
-                        <div class="admin-section"><h4>⛔ Interdictions</h4><textarea id="hardt_interdictions"></textarea></div>
-                        <div class="admin-section"><h4>🎯 Pêche aux carnassiers</h4><textarea id="hardt_carnassiers"></textarea></div>
-                        <div class="admin-section"><h4>🗑️ Gestion des déchets</h4><textarea id="hardt_dechets"></textarea></div>
-                        <div class="admin-section"><h4>📞 Contacts</h4><textarea id="hardt_contacts"></textarea></div>
-                    </div>
-                    
-                    <div class="admin-tab-content" id="tabBreitmatt">
-                        <div class="admin-section"><h4>🗓️ Périodes et horaires</h4><textarea id="breitmatt_horaires"></textarea></div>
-                        <div class="admin-section"><h4>🎫 Cartes et tarifs</h4><textarea id="breitmatt_tarifs"></textarea></div>
-                        <div class="admin-section"><h4>🎣 Modalités de pêche</h4><textarea id="breitmatt_modalites"></textarea></div>
-                        <div class="admin-section"><h4>👶 Pêche des mineurs</h4><textarea id="breitmatt_mineurs"></textarea></div>
-                        <div class="admin-section"><h4>👮 Contrôles et sanctions</h4><textarea id="breitmatt_sanctions"></textarea></div>
-                        <div class="admin-section"><h4>⛔ Interdictions</h4><textarea id="breitmatt_interdictions"></textarea></div>
-                        <div class="admin-section"><h4>🎯 Pêche aux carnassiers</h4><textarea id="breitmatt_carnassiers"></textarea></div>
-                        <div class="admin-section"><h4>🗑️ Gestion des déchets</h4><textarea id="breitmatt_dechets"></textarea></div>
-                        <div class="admin-section"><h4>📞 Contacts</h4><textarea id="breitmatt_contacts"></textarea></div>
-                    </div>
-                    
-                    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
-                        <button class="admin-btn primary" onclick="saveAdminContent()">💾 Enregistrer</button>
-                        <button class="admin-btn secondary" onclick="closeAdminModal()">Annuler</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    <!-- Alert -->
     <div class="alert" id="alert"></div>
     
+    <!-- Loading -->
     <div class="loading-overlay" id="loading">
         <div class="spinner"></div>
         <div class="loading-text">Envoi en cours...</div>
     </div>
     
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     
     <script>
-        const firebaseConfig = { databaseURL: "https://appli-controleur-gunder-default-rtdb.europe-west1.firebasedatabase.app" };
-        const ADMIN_PASSWORD = "adminformulaire";
+        // =============================================
+        // CONFIGURATION FIREBASE
+        // =============================================
+        const firebaseConfig = {
+            databaseURL: "https://appli-controleur-gunder-default-rtdb.europe-west1.firebasedatabase.app"
+        };
+        
+        // =============================================
+        // INITIALISATION
+        // =============================================
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.database(app);
         
-        const DEFAULT_REGLEMENTS = {
-            carpodrome: {
-                horaires: "Sur réservation uniquement et 24h à l'avance\n- Du 1er mars au 4 mai : samedis, dimanches et jours fériés\n- Du 5 mai au 30 octobre : tous les jours\n- Pêche de 8h à 19h (début mars à fin avril et début septembre à fin octobre)\n- Pêche de 8h à 20h (début mai à fin août)\n⚠️ L'AAPPMA se réserve le droit de fermer les étangs en cas d'événement indépendant de sa volonté (manque d'eau, cyanobactéries, etc...)",
-                tarifs: "- Carte journalière : 10 € / Titulaires carte annuelle AAPPMA : 5 €\n- Carte demi-journée : 6 € / Titulaires carte annuelle AAPPMA : 3 €\n- Jours d'événements : pêche payante pour tous (10 €)\n- Réservation obligatoire 24h avant le jour de pêche via formulaire en ligne\n- Contact en cas de problème : Patrice – 06.37.70.37.31 ou gundershoffenaappma@gmail.com\n⚠️ Pour l'achat d'une carte journalière, merci de prévoir le montant exact. L'association ne peut assurer la disponibilité de monnaie.",
-                modalites: "- Pêche No Kill obligatoire\n- Canne au coup uniquement, longueur max : 13 m\n- 1 ligne par pêcheur (pêcheur désigné lors de la réservation)\n- Max 2 pêcheurs par poste (à préciser lors de la réservation)\n- Pêche sous la canne, dans la zone du poste réservé\n- Amorçage : uniquement à la coupelle ou fronde\n- Matériel obligatoire : bassine ou tapis de réception épais avec rebord (5cm mini)\n- Hameçon taille max nº10 obligatoirement sans ardillon (pincé/limé interdit)\n- Bourriche autorisée pour poisson blanc uniquement\n- Carpes et tanches : relâchées immédiatement\n- Esches autorisées : végétales, vers de terre, asticots\n- Pellets et baby corn autorisés\n- Graines cuites uniquement\n- Kit de soins conseillé",
-                mineurs: "- Moins de 12 ans : accompagnement obligatoire d'une personne majeure et sous responsabilité parentale\n- Autorisée sans accompagnant à partir de 12 ans",
-                sanctions: "- Carte de pêche à présenter\n- Contrôles réguliers et imprévus\nSanctions :\n- 1ère infraction → avertissement\n- 2ème infraction → exclusion temporaire ou définitive\n- Aucun remboursement du titre de pêche en cas d'exclusion",
-                interdictions: "❌ Feux au sol et barbecues\n❌ Pêche de nuit\n❌ Camping (seuls parapluies autorisés)\n❌ Baignade, canotage\n❌ Mutilation ou marquage des poissons\n❌ Faire pêcher une autre personne qui n'a pas réservé le poste\n❌ Franglaise, Feeder\n❌ Poisson posé au sol ou tenu avec un chiffon\n❌ Graines crues\n❌ Pêche au pain\n❌ Hameçons avec ardillons\n❌ Pêche en surface",
-                dechets: "- Le poste de pêche devra être propre en fin de session\n- Vous devez emporter vos déchets sous peine d'une amende de 150€ (art. 632-1 du code pénal)",
-                contacts: "- Président : René Rahm – 06.50.76.59.34\n- Problème sur réservations : Patrice Walter – 06.37.70.37.31\n- Garde pêche : Raymond Ledig – 06.95.24.90.84 (gpp67110@free.fr)\n- Urgences : POMPIERS 18 – POLICE 17 – SAMU 15\n🌐 www.aappma-gundershoffen.fr"
+        // =============================================
+        // LECTURE PARAMÈTRES URL (email pré-rempli)
+        // =============================================
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                email: params.get('email'),
+                nom: params.get('nom'),
+                prenom: params.get('prenom')
+            };
+        }
+        
+        // Pré-remplir les champs si paramètres présents
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = getUrlParams();
+            
+            if (params.email) {
+                const emailField = document.getElementById('email');
+                emailField.value = params.email;
+                emailField.classList.add('prefilled');
+                document.getElementById('prefillNotice').style.display = 'block';
+            }
+            
+            if (params.nom) {
+                document.getElementById('nom').value = params.nom;
+            }
+            
+            if (params.prenom) {
+                document.getElementById('prenom').value = params.prenom;
+            }
+        });
+        
+        // =============================================
+        // RÈGLEMENTS
+        // =============================================
+        const reglements = {
+            carpodrome: { 
+                title: "🎣 RÈGLEMENT - CARPODROME 2026", 
+                content: `<h3>🗓️ PÉRIODES ET HORAIRES D'OUVERTURE</h3><p>Les horaires de pêche :</p><p><strong>30 minutes avant le lever du soleil → 30 minutes après le coucher</strong></p><ul><li><strong>Sur réservation uniquement et 24h à l'avance</strong></li><li>Du <strong>1er mars au 4 mai</strong> : samedis, dimanches et jours fériés</li><li>Du <strong>5 mai au 30 octobre</strong> : tous les jours</li><li>Pêche de <strong>8h à 19h</strong> - Période de mars à avril et période de septembre à fin octobre</li><li>Pêche de <strong>8h à 20h</strong> - Période de mai à fin août</li></ul><div class="important">L'AAPPMA peut à tout moment fermer les étangs pour cause d'événements indépendants de notre volonté (manque d'eau, cyanobactéries, etc...)</div><h3>🎫 RÉSERVATION ET TARIFS</h3><ul><li>Carte <strong>journalière</strong> : <strong>10 €</strong> - Titulaires de la carte annuelle : <strong>5 €</strong></li><li>Carte <strong>demi-journée</strong> : <strong>6 €</strong> - Titulaires de la carte annuelle : <strong>3 €</strong></li></ul><div class="info"><strong>Réservation obligatoire 24h avant</strong><br>Via formulaire en ligne<br><strong>www.aappma-gundershoffen.fr</strong></div><h3>🎣 MODALITÉS DE PÊCHE</h3><ul><li>Pêche <strong>No Kill obligatoire</strong></li><li>Canne au coup uniquement, longueur max : <strong>13 m</strong></li><li><strong>1 ligne par pêcheur</strong></li><li>Max <strong>2 pêcheurs par poste</strong></li><li>Hameçon sans ardillon, taille max <strong>n°10</strong></li><li><strong>Graines cuites obligatoirement</strong></li></ul><h3>⛔ INTERDICTIONS</h3><ul><li>❌ Feux au sol et barbecues</li><li>❌ Pêche de nuit</li><li>❌ Camping</li><li>❌ Baignade, canotage</li><li>❌ Graines crues</li><li>❌ Hameçons avec ardillons</li></ul><h3>👮 CONTRÔLES ET SANCTIONS</h3><ul><li>⚠️ 1ère infraction → <strong>avertissement</strong></li><li>🚫 3 avertissements → <strong>bannissement</strong></li></ul>` 
             },
-            hardt: {
-                horaires: "30 minutes avant le lever du soleil → 30 minutes après le coucher\n- Du 1er mars au 26 avril : samedis, dimanches et jours fériés uniquement\n- Du 5 mai au 30 octobre : tous les jours\n- Du 1er novembre au 31 décembre : samedis, dimanches et jours fériés uniquement\n- Pêche de nuit : 20h → 8h (réservation obligatoire)\nPêche aux carnassiers autorisée :\n- Du 1er novembre au 31 décembre, samedi, dimanche et jours fériés uniquement\n- Carte annuelle AAPPMA Gundershoffen obligatoire\n- Carte journalière refusée\n⚠️ L'AAPPMA se réserve le droit de fermer les étangs en cas d'événement indépendant de sa volonté",
-                tarifs: "- Carte journalière : 10 €\n- Carte demi-journée : 6 €\n- Carte pêche de nuit : 10 € (réservation 24h à l'avance par SMS au 06.76.57.85.03)\n- Carte annuelle : obligatoire pour la pêche aux carnassiers\n- Jours d'événements : pêche payante pour tous (10 €)\n⚠️ Pour l'achat d'une carte journalière, merci de prévoir le montant exact",
-                modalites: "- Pêche No Kill obligatoire\n- Amorçage et pêche depuis le poste\n- Matériel obligatoire : bassine ou tapis de réception épais avec rebord (5cm mini) + filoche adaptée\n- Kit de soins conseillé\n- Graines cuites uniquement\n- Esches autorisées : végétales, vers, asticots, teignes, vers de lune…\n- Canne toujours sous surveillance\n- Respect des zones de pêche (voir plan) et des autres pêcheurs\n- 2 lignes maximum par pêcheur\n- 12 postes carpistes (n°1 à 12)\n- 3 postes pêche au coup (lettres)\n- Poste 4 réservé aux contrôleurs\n- 1 véhicule par pêcheur autorisé autour de l'étang\n- Véhicules visiteurs à stationner en dehors de l'enceinte\n- Circulation interdite après 22h (sauf urgence après avoir prévenu un contrôleur)",
-                nuit: "Horaire : 20h jusqu'à 8h le lendemain\n- Sur réservation obligatoire 24h à l'avance par SMS au 06.76.57.85.03\n- Une pêche de présentation est obligatoire avant l'obtention d'une autorisation annuelle accordée par un des contrôleurs désignés",
-                mineurs: "- Moins de 12 ans : accompagnement obligatoire d'une personne majeure et sous responsabilité parentale\n- Autorisée sans accompagnant à partir de 12 ans en journée uniquement\n- Pêche de nuit autorisée uniquement en présence continue d'une personne majeure et sous responsabilité parentale",
-                sanctions: "- Il pourra vous être demandé de présenter votre titre de pêche lors des contrôles\nSanctions :\n- 1ère infraction → avertissement\n- 2ème infraction → exclusion temporaire ou définitive\n- Aucun remboursement du titre de pêche en cas d'exclusion",
-                interdictions: "❌ Feux au sol (barbecue lors des périodes de sécheresse ou arrêtés préfectoraux)\n❌ Consommation d'alcool excessive\n❌ Camping (hors pêcheurs)\n❌ Baignade, canotage, accès aux îles\n❌ Mutilation ou marquage des poissons\n❌ Canne laissée sans surveillance\n❌ Pêche en dehors des postes\n❌ Sacs de conservation\n❌ Bateau amorceur\n❌ Poisson posé au sol ou tenu avec un chiffon\n❌ Graines crues\n❌ Pêche au pain\n❌ Hameçons avec ardillons\n❌ Bas de ligne en tresse (sauf corps de ligne)\n❌ Pêche en surface\n❌ Stationnement sur le chemin et ailleurs que derrière son poste\n❌ Véhicules visiteurs autour de l'étang",
-                carnassiers: "Interdictions spécifiques :\n❌ Carte journalière (non autorisée)\n❌ Filets, nasses, pêche à la main ou sous glace\n❌ Troubler l'eau, fouiller\n❌ Utilisation de poissons protégés ou nuisibles (perche soleil, goujon asiatique...)\n❌ Appâts à base d'œufs de poissons\n- Quota : 3 carnassiers/jour max, dont 2 brochets (min. 50 cm)",
-                dechets: "- Le poste de pêche devra être propre en fin de session\n- Vous devez emporter vos déchets sous peine d'une amende de 150€ (art. 632-1 du code pénal)",
-                contacts: "- Président : René Rahm – 06.50.76.59.34\n- Garde pêche : Raymond Ledig – 06.95.24.90.84 (gpp67110@free.fr)\n- Réservation pêche de nuit : Jean François Klein – 06.76.57.85.03\n- Urgences : POMPIERS 18 – POLICE 17 – SAMU 15\n🌐 www.aappma-gundershoffen.fr"
+            hardt: { 
+                title: "🐟 RÈGLEMENT ÉTANG DE LA HARDT 2026", 
+                content: `<h3>🗓️ PÉRIODES ET HORAIRES D'OUVERTURE</h3><p><strong>30 minutes avant le lever du soleil → 30 minutes après le coucher</strong></p><ul><li>Du <strong>1er mars au 4 mai</strong> : samedis, dimanches et jours fériés</li><li>Du <strong>5 mai au 30 octobre</strong> : tous les jours</li><li>Du <strong>1er novembre au 31 décembre</strong> : samedis, dimanches et jours fériés</li><li><strong>Pêche de nuit : 20h → 8h (réservation obligatoire)</strong></li></ul><h3>🎫 CARTES ET TARIFS</h3><ul><li>Carte <strong>journalière</strong> : <strong>10 €</strong></li><li>Carte <strong>demi-journée</strong> : <strong>6 €</strong></li><li>Carte <strong>pêche de nuit</strong> : <strong>10 €</strong></li></ul><h3>🎣 MODALITÉS DE PÊCHE</h3><ul><li><strong>Pêche No Kill obligatoire</strong></li><li><strong>2 lignes par pêcheur</strong></li><li><strong>12 postes carpistes</strong> (n°1 à 12)</li><li><strong>3 postes pêche au coup</strong></li><li><strong>Graines cuites obligatoirement</strong></li><li><strong>Circulation interdite après 22h</strong></li></ul><h3>⛔ INTERDICTIONS</h3><ul><li>❌ Bateau amorceur</li><li>❌ Sacs de conservation</li><li>❌ Graines crues</li><li>❌ Hameçons avec ardillons</li><li>❌ Bas de ligne en tresse</li></ul><h3>👮 CONTRÔLES ET SANCTIONS</h3><ul><li>⚠️ 1ère infraction → <strong>avertissement</strong></li><li>🚫 3 avertissements → <strong>bannissement</strong></li></ul>` 
             },
-            breitmatt: {
-                horaires: "Pêche possible uniquement dans le grand étang, sauf dérogation spécifique\n30 minutes avant le lever du soleil → 30 minutes après le coucher\n- Du 1er mars au 4 mai : samedis, dimanches et jours fériés uniquement\n- Du 5 mai au 30 octobre : tous les jours\n- Du 1er novembre au 31 décembre : samedis, dimanches et jours fériés uniquement\nPêche aux carnassiers autorisée :\n- Du 1er novembre au 31 décembre, samedi, dimanche et jours fériés uniquement\n- Carte annuelle AAPPMA Gundershoffen obligatoire\n- Carte journalière refusée\n⚠️ L'AAPPMA se réserve le droit de fermer les étangs en cas d'événement indépendant de sa volonté",
-                tarifs: "- Carte journalière : 10 €\n- Carte demi-journée : 6 €\n- Carte annuelle : obligatoire pour la pêche aux carnassiers\n- Jours d'événements : pêche payante pour tous (10 €)\n⚠️ Pour l'achat d'une carte journalière, merci de prévoir le montant exact",
-                modalites: "- Pêche No Kill obligatoire (sauf truites et perches soleil)\n- Amorçage et pêche depuis le poste obligatoire\n- Matériel obligatoire : bassine ou tapis de réception épais avec rebord (5cm mini) + filoche adaptée\n- Kit de soins conseillé\n- Graines cuites uniquement\n- Esches autorisées : végétales, vers, asticots, teignes, vers de lune…\n- Canne toujours sous surveillance\n- Respect des zones de pêche et des autres pêcheurs\n- 2 lignes maximum par pêcheur",
-                mineurs: "- Moins de 12 ans : accompagnement obligatoire d'une personne majeure et sous responsabilité parentale\n- Autorisée sans accompagnant à partir de 12 ans, en journée uniquement",
-                sanctions: "- Il pourra vous être demandé de présenter votre titre de pêche lors des contrôles\nSanctions :\n- 1ère infraction → avertissement\n- 2ème infraction → exclusion temporaire ou définitive\n- Aucun remboursement du titre de pêche en cas d'exclusion",
-                interdictions: "❌ Feux au sol et barbecues\n❌ Camping (seuls parapluies ou demi-tentes autorisés)\n❌ Baignade, canotage\n❌ Mutilation ou marquage des poissons\n❌ Canne laissée sans surveillance\n❌ Pêche en dehors des postes et dans la frayère\n❌ Sacs de conservation\n❌ Bateau amorceur\n❌ Poisson posé au sol ou tenu avec un chiffon\n❌ Graines crues\n❌ Pêche au pain\n❌ Hameçons avec ardillons\n❌ Bas de ligne en tresse (sauf corps de ligne)\n❌ Pêche en surface\n❌ Stationnement sur le chemin et la berge côté étang",
-                carnassiers: "Interdictions spécifiques :\n❌ Carte journalière (non autorisée)\n❌ Filets, nasses, pêche à la main ou sous glace\n❌ Troubler l'eau, fouiller\n❌ Utilisation de poissons protégés ou nuisibles (perche soleil, goujon asiatique...)\n❌ Appâts à base d'œufs de poissons\n- Quota : 3 carnassiers/jour max, dont 2 brochets (min. 50 cm)",
-                dechets: "- Le poste de pêche devra être propre en fin de session\n- Vous devez emporter vos déchets sous peine d'une amende de 150€ (art. 632-1 du code pénal)",
-                contacts: "- Président : René Rahm – 06.50.76.59.34\n- Garde pêche : Raymond Ledig – 06.95.24.90.84 (gpp67110@free.fr)\n- Urgences : POMPIERS 18 – POLICE 17 – SAMU 15\n🌐 www.aappma-gundershoffen.fr"
+            breitmatt: { 
+                title: "🌊 RÈGLEMENT ÉTANG DU BREITMATT 2026", 
+                content: `<h3>🗓️ PÉRIODES D'OUVERTURE</h3><ul><li>Ouvert selon calendrier AAPPMA</li><li>Consulter le site www.aappma-gundershoffen.fr</li></ul><h3>🎣 RÈGLES GÉNÉRALES</h3><ul><li>Carte de pêche obligatoire</li><li>Respect des autres pêcheurs</li><li>Respect de l'environnement</li><li><strong>Graines cuites obligatoirement</strong></li></ul><h3>⛔ INTERDICTIONS</h3><ul><li>❌ Dépôt de déchets</li><li>❌ Feux</li><li>❌ Camping sauvage</li><li>❌ Graines crues</li><li>❌ Hameçons avec ardillons</li></ul><h3>👮 CONTRÔLES ET SANCTIONS</h3><ul><li>Contrôles réguliers</li><li>⚠️ 1ère infraction → <strong>avertissement</strong></li><li>🚫 3 avertissements → <strong>bannissement</strong></li></ul>` 
             }
         };
         
-        let reglementsData = null;
         let currentReglement = null;
-        let modalScrollComplete = false;
         const reglementsRead = { carpodrome: false, hardt: false, breitmatt: false };
         
-        function loadReglementsFromFirebase() {
-            db.ref('reglements_formulaire').on('value', (snapshot) => {
-                reglementsData = snapshot.exists() ? snapshot.val() : null;
-            });
-        }
-        loadReglementsFromFirebase();
-        
-        function getReglement(name) {
-            return (reglementsData && reglementsData[name]) ? reglementsData[name] : DEFAULT_REGLEMENTS[name];
-        }
-        
-        function formatSection(text, isInterdit = false) {
-            if (!text) return '';
-            let html = '', inList = false;
-            text.split('\n').filter(l => l.trim()).forEach(line => {
-                const t = line.trim();
-                if (t.startsWith('-') || t.startsWith('❌')) {
-                    if (!inList) { html += '<ul' + (isInterdit ? ' class="interdit"' : '') + '>'; inList = true; }
-                    html += '<li>' + t.replace(/^-\s*/, '').replace(/^❌\s*/, '❌ ') + '</li>';
-                } else if (t.startsWith('⚠️')) {
-                    if (inList) { html += '</ul>'; inList = false; }
-                    html += '<div class="important">' + t + '</div>';
-                } else {
-                    if (inList) { html += '</ul>'; inList = false; }
-                    html += '<p>' + t + '</p>';
-                }
-            });
-            return inList ? html + '</ul>' : html;
-        }
-        
-        function generateReglementHTML(name) {
-            const reg = getReglement(name);
-            let html = '';
-            if (name === 'carpodrome') {
-                html += '<h3>🗓️ PÉRIODES ET HORAIRES</h3>' + formatSection(reg.horaires);
-                html += '<h3>🎫 RÉSERVATION ET TARIFS</h3>' + formatSection(reg.tarifs);
-                html += '<h3>🎣 MODALITÉS DE PÊCHE</h3>' + formatSection(reg.modalites);
-                html += '<h3>👶 PÊCHE DES MINEURS</h3>' + formatSection(reg.mineurs);
-                html += '<h3>👮 CONTRÔLES ET SANCTIONS</h3>' + formatSection(reg.sanctions);
-                html += '<h3>⛔ INTERDICTIONS</h3>' + formatSection(reg.interdictions, true);
-                html += '<h3>🗑️ GESTION DES DÉCHETS</h3>' + formatSection(reg.dechets);
-                html += '<div class="contact-box"><h3>📞 CONTACTS</h3>' + formatSection(reg.contacts) + '</div>';
-            } else if (name === 'hardt') {
-                html += '<h3>🗓️ PÉRIODES ET HORAIRES</h3>' + formatSection(reg.horaires);
-                html += '<h3>🎫 CARTES ET TARIFS</h3>' + formatSection(reg.tarifs);
-                html += '<h3>🎣 MODALITÉS DE PÊCHE</h3>' + formatSection(reg.modalites);
-                html += '<h3>🌙 PÊCHE DE NUIT</h3>' + formatSection(reg.nuit);
-                html += '<h3>👶 PÊCHE DES MINEURS</h3>' + formatSection(reg.mineurs);
-                html += '<h3>👮 CONTRÔLES ET SANCTIONS</h3>' + formatSection(reg.sanctions);
-                html += '<h3>⛔ INTERDICTIONS</h3>' + formatSection(reg.interdictions, true);
-                html += '<h3>🎯 PÊCHE AUX CARNASSIERS</h3>' + formatSection(reg.carnassiers, true);
-                html += '<h3>🗑️ GESTION DES DÉCHETS</h3>' + formatSection(reg.dechets);
-                html += '<div class="contact-box"><h3>📞 CONTACTS</h3>' + formatSection(reg.contacts) + '</div>';
-            } else {
-                html += '<h3>🗓️ PÉRIODES ET HORAIRES</h3>' + formatSection(reg.horaires);
-                html += '<h3>🎫 CARTES ET TARIFS</h3>' + formatSection(reg.tarifs);
-                html += '<h3>🎣 MODALITÉS DE PÊCHE</h3>' + formatSection(reg.modalites);
-                html += '<h3>👶 PÊCHE DES MINEURS</h3>' + formatSection(reg.mineurs);
-                html += '<h3>👮 CONTRÔLES ET SANCTIONS</h3>' + formatSection(reg.sanctions);
-                html += '<h3>⛔ INTERDICTIONS</h3>' + formatSection(reg.interdictions, true);
-                html += '<h3>🎯 PÊCHE AUX CARNASSIERS</h3>' + formatSection(reg.carnassiers, true);
-                html += '<h3>🗑️ GESTION DES DÉCHETS</h3>' + formatSection(reg.dechets);
-                html += '<div class="contact-box"><h3>📞 CONTACTS</h3>' + formatSection(reg.contacts) + '</div>';
-            }
-            html += '<div style="height:50px"></div><p style="text-align:center;font-weight:bold;color:#2e7d32">✅ Vous avez lu l\'intégralité du règlement</p><div style="height:20px"></div>';
-            return html;
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('email')) {
-                document.getElementById('email').value = params.get('email');
-                document.getElementById('email').classList.add('prefilled');
-                document.getElementById('prefillNotice').style.display = 'block';
-            }
-            if (params.get('nom')) document.getElementById('nom').value = params.get('nom');
-            if (params.get('prenom')) document.getElementById('prenom').value = params.get('prenom');
-        });
-        
+        // =============================================
+        // GESTION DES RÈGLEMENTS
+        // =============================================
         document.querySelectorAll('.reglement-checkbox').forEach(cb => {
             cb.addEventListener('change', function() {
-                const reg = this.closest('.reglement-item').dataset.reglement;
-                const btn = document.querySelector(`.reglement-read-btn[data-for="${reg}"]`);
+                const reglement = this.closest('.reglement-item').dataset.reglement;
+                const readBtn = document.querySelector(`.reglement-read-btn[data-for="${reglement}"]`);
                 const item = this.closest('.reglement-item');
-                if (this.checked) { btn.disabled = false; item.classList.add('checked'); }
-                else { btn.disabled = true; item.classList.remove('checked'); reglementsRead[reg] = false; updateReglementStatus(reg); }
+                
+                if (this.checked) {
+                    readBtn.disabled = false;
+                    item.classList.add('checked');
+                } else {
+                    readBtn.disabled = true;
+                    item.classList.remove('checked');
+                    reglementsRead[reglement] = false;
+                    updateReglementStatus(reglement);
+                }
                 updateSubmitButton();
             });
         });
@@ -655,143 +574,176 @@
         document.querySelectorAll('.reglement-read-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 currentReglement = this.dataset.for;
-                modalScrollComplete = false;
-                const titles = { carpodrome: '🎣 RÈGLEMENT CARPODROME 2026', hardt: '🐟 RÈGLEMENT HARDT 2026', breitmatt: '🌊 RÈGLEMENT BREITMATT 2026' };
-                document.getElementById('modalTitle').textContent = titles[currentReglement];
-                document.getElementById('modalBody').innerHTML = generateReglementHTML(currentReglement);
+                const reg = reglements[currentReglement];
+                document.getElementById('modalTitle').textContent = reg.title;
+                document.getElementById('modalBody').innerHTML = reg.content;
                 document.getElementById('modalBody').scrollTop = 0;
-                document.getElementById('modalProgressBar').style.width = '0%';
-                document.getElementById('modalProgressStatus').textContent = '⬇️ Faites défiler pour lire le règlement complet';
-                document.getElementById('modalProgressStatus').classList.remove('complete');
                 document.getElementById('readConfirmCheckbox').checked = false;
-                document.getElementById('readConfirmCheckbox').disabled = true;
-                document.getElementById('readConfirmLabel').classList.add('disabled');
                 document.getElementById('modalValidateBtn').disabled = true;
                 document.getElementById('reglementModal').classList.add('visible');
             });
         });
         
-        function checkModalScroll() {
-            const mb = document.getElementById('modalBody');
-            const pct = (mb.scrollTop / (mb.scrollHeight - mb.clientHeight)) * 100;
-            document.getElementById('modalProgressBar').style.width = Math.min(pct, 100) + '%';
-            if (pct >= 95 && !modalScrollComplete) {
-                modalScrollComplete = true;
-                document.getElementById('readConfirmCheckbox').disabled = false;
-                document.getElementById('readConfirmLabel').classList.remove('disabled');
-                document.getElementById('modalProgressStatus').textContent = '✅ Règlement lu - Cochez la case ci-dessous';
-                document.getElementById('modalProgressStatus').classList.add('complete');
-            }
-        }
+        document.getElementById('modalClose').addEventListener('click', () => {
+            document.getElementById('reglementModal').classList.remove('visible');
+        });
         
-        function closeReglementModal() { document.getElementById('reglementModal').classList.remove('visible'); }
-        document.getElementById('reglementModal').addEventListener('click', e => { if (e.target.id === 'reglementModal') closeReglementModal(); });
-        document.getElementById('readConfirmCheckbox').addEventListener('change', function() { document.getElementById('modalValidateBtn').disabled = !this.checked; });
+        document.getElementById('reglementModal').addEventListener('click', (e) => {
+            if (e.target.id === 'reglementModal') {
+                document.getElementById('reglementModal').classList.remove('visible');
+            }
+        });
+        
+        document.getElementById('readConfirmCheckbox').addEventListener('change', function() {
+            document.getElementById('modalValidateBtn').disabled = !this.checked;
+        });
+        
         document.getElementById('modalValidateBtn').addEventListener('click', () => {
             reglementsRead[currentReglement] = true;
             updateReglementStatus(currentReglement);
-            closeReglementModal();
+            document.getElementById('reglementModal').classList.remove('visible');
             updateSubmitButton();
             showAlert('✅ Règlement ' + currentReglement.toUpperCase() + ' validé !', 'success');
         });
         
-        function updateReglementStatus(reg) {
-            const s = document.getElementById('status-' + reg);
-            if (reglementsRead[reg]) { s.textContent = '✅ Lu'; s.className = 'reglement-status read'; }
-            else { s.textContent = 'Non lu'; s.className = 'reglement-status unread'; }
+        function updateReglementStatus(reglement) {
+            const status = document.getElementById('status-' + reglement);
+            if (reglementsRead[reglement]) {
+                status.textContent = '✅ Lu';
+                status.className = 'reglement-status read';
+            } else {
+                status.textContent = 'Non lu';
+                status.className = 'reglement-status unread';
+            }
         }
         
         function updateSubmitButton() {
-            const checked = document.querySelectorAll('.reglement-checkbox:checked');
-            let allRead = true;
-            checked.forEach(cb => { if (!reglementsRead[cb.closest('.reglement-item').dataset.reglement]) allRead = false; });
-            document.getElementById('submitBtn').disabled = !(checked.length > 0 && allRead);
-        }
-        
-        function openAdminModal() {
-            document.getElementById('adminPasswordSection').style.display = 'block';
-            document.getElementById('adminContentSection').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-            document.getElementById('adminPasswordError').style.display = 'none';
-            document.getElementById('adminModal').classList.add('visible');
-            setTimeout(() => document.getElementById('adminPassword').focus(), 100);
-        }
-        function closeAdminModal() { document.getElementById('adminModal').classList.remove('visible'); }
-        function checkAdminPassword() {
-            if (document.getElementById('adminPassword').value === ADMIN_PASSWORD) {
-                document.getElementById('adminPasswordSection').style.display = 'none';
-                document.getElementById('adminContentSection').style.display = 'block';
-                loadAdminContent();
-            } else {
-                document.getElementById('adminPasswordError').style.display = 'block';
-                document.getElementById('adminPassword').value = '';
-            }
-        }
-        function switchAdminTab(tab) {
-            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
-        }
-        function loadAdminContent() {
-            ['carpodrome', 'hardt', 'breitmatt'].forEach(name => {
-                const reg = getReglement(name);
-                Object.keys(reg).forEach(key => { const el = document.getElementById(name + '_' + key); if (el) el.value = reg[key] || ''; });
+            const checkedReglements = document.querySelectorAll('.reglement-checkbox:checked');
+            let allCheckedAreRead = true;
+            let atLeastOneChecked = checkedReglements.length > 0;
+            
+            checkedReglements.forEach(cb => {
+                const reglement = cb.closest('.reglement-item').dataset.reglement;
+                if (!reglementsRead[reglement]) {
+                    allCheckedAreRead = false;
+                }
             });
-        }
-        function saveAdminContent() {
-            const all = {
-                carpodrome: { horaires: document.getElementById('carpodrome_horaires').value.trim(), tarifs: document.getElementById('carpodrome_tarifs').value.trim(), modalites: document.getElementById('carpodrome_modalites').value.trim(), mineurs: document.getElementById('carpodrome_mineurs').value.trim(), sanctions: document.getElementById('carpodrome_sanctions').value.trim(), interdictions: document.getElementById('carpodrome_interdictions').value.trim(), dechets: document.getElementById('carpodrome_dechets').value.trim(), contacts: document.getElementById('carpodrome_contacts').value.trim() },
-                hardt: { horaires: document.getElementById('hardt_horaires').value.trim(), tarifs: document.getElementById('hardt_tarifs').value.trim(), modalites: document.getElementById('hardt_modalites').value.trim(), nuit: document.getElementById('hardt_nuit').value.trim(), mineurs: document.getElementById('hardt_mineurs').value.trim(), sanctions: document.getElementById('hardt_sanctions').value.trim(), interdictions: document.getElementById('hardt_interdictions').value.trim(), carnassiers: document.getElementById('hardt_carnassiers').value.trim(), dechets: document.getElementById('hardt_dechets').value.trim(), contacts: document.getElementById('hardt_contacts').value.trim() },
-                breitmatt: { horaires: document.getElementById('breitmatt_horaires').value.trim(), tarifs: document.getElementById('breitmatt_tarifs').value.trim(), modalites: document.getElementById('breitmatt_modalites').value.trim(), mineurs: document.getElementById('breitmatt_mineurs').value.trim(), sanctions: document.getElementById('breitmatt_sanctions').value.trim(), interdictions: document.getElementById('breitmatt_interdictions').value.trim(), carnassiers: document.getElementById('breitmatt_carnassiers').value.trim(), dechets: document.getElementById('breitmatt_dechets').value.trim(), contacts: document.getElementById('breitmatt_contacts').value.trim() }
-            };
-            db.ref('reglements_formulaire').set(all).then(() => { closeAdminModal(); showAlert('✅ Règlements enregistrés !', 'success'); }).catch(() => showAlert('❌ Erreur', 'error'));
+            
+            document.getElementById('submitBtn').disabled = !(atLeastOneChecked && allCheckedAreRead);
         }
         
+        // =============================================
+        // API CODE POSTAL
+        // =============================================
         document.getElementById('codePostal').addEventListener('input', async function() {
-            const cp = this.value.trim(), sel = document.getElementById('ville');
+            const cp = this.value.trim();
+            const villeSelect = document.getElementById('ville');
+            
             if (cp.length === 5) {
                 try {
-                    const res = await fetch(`https://geo.api.gouv.fr/communes?codePostal=${cp}&fields=nom`);
-                    const data = await res.json();
-                    sel.innerHTML = '';
-                    if (data.length) { data.forEach(v => { const o = document.createElement('option'); o.value = v.nom; o.textContent = v.nom; sel.appendChild(o); }); sel.disabled = false; }
-                    else { sel.innerHTML = '<option value="">Aucune ville</option>'; sel.disabled = true; }
-                } catch(e) { sel.innerHTML = '<option value="">Erreur</option>'; }
-            } else { sel.innerHTML = '<option value="">Entrez le code postal</option>'; sel.disabled = true; }
+                    const response = await fetch(`https://geo.api.gouv.fr/communes?codePostal=${cp}&fields=nom`);
+                    const data = await response.json();
+                    
+                    villeSelect.innerHTML = '';
+                    if (data.length > 0) {
+                        data.forEach(ville => {
+                            const option = document.createElement('option');
+                            option.value = ville.nom;
+                            option.textContent = ville.nom;
+                            villeSelect.appendChild(option);
+                        });
+                        villeSelect.disabled = false;
+                    } else {
+                        villeSelect.innerHTML = '<option value="">Aucune ville trouvée</option>';
+                        villeSelect.disabled = true;
+                    }
+                } catch (e) {
+                    villeSelect.innerHTML = '<option value="">Erreur de chargement</option>';
+                }
+            } else {
+                villeSelect.innerHTML = '<option value="">Entrez le code postal</option>';
+                villeSelect.disabled = true;
+            }
         });
         
+        // =============================================
+        // ENVOI DU FORMULAIRE
+        // =============================================
         document.getElementById('ficheForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const regs = [];
-            document.querySelectorAll('.reglement-checkbox:checked').forEach(cb => { const r = cb.closest('.reglement-item').dataset.reglement; if (reglementsRead[r]) regs.push(r.toUpperCase()); });
+            
+            // Récupérer les données
+            const nom = document.getElementById('nom').value.toUpperCase().trim();
+            const prenom = document.getElementById('prenom').value.trim();
+            const adresse = document.getElementById('adresse').value.trim();
+            const codePostal = document.getElementById('codePostal').value.trim();
+            const ville = document.getElementById('ville').value;
+            const telephone = document.getElementById('telephone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const urgenceNom = document.getElementById('urgenceNom').value.toUpperCase().trim();
+            const urgencePrenom = document.getElementById('urgencePrenom').value.trim();
+            const urgenceTel = document.getElementById('urgenceTel').value.trim();
+            
+            // Règlements cochés et lus
+            const reglementsValides = [];
+            document.querySelectorAll('.reglement-checkbox:checked').forEach(cb => {
+                const reg = cb.closest('.reglement-item').dataset.reglement;
+                if (reglementsRead[reg]) {
+                    reglementsValides.push(reg.toUpperCase());
+                }
+            });
+            
+            const dateInscription = new Date().toLocaleString('fr-FR');
+            
+            // Afficher le loading
             document.getElementById('loading').classList.add('visible');
+            
             try {
-                await db.ref('fiches').push({
-                    nom: document.getElementById('nom').value.toUpperCase().trim(),
-                    prenom: document.getElementById('prenom').value.trim(),
-                    adresse: document.getElementById('adresse').value.trim(),
-                    codePostal: document.getElementById('codePostal').value.trim(),
-                    ville: document.getElementById('ville').value,
-                    telephone: document.getElementById('telephone').value.trim(),
-                    email: document.getElementById('email').value.trim(),
-                    urgence: { nom: document.getElementById('urgenceNom').value.toUpperCase().trim(), prenom: document.getElementById('urgencePrenom').value.trim(), telephone: document.getElementById('urgenceTel').value.trim() },
-                    reglements: regs,
-                    date: new Date().toLocaleString('fr-FR'),
+                // Enregistrer dans Firebase
+                const ficheData = {
+                    nom: nom,
+                    prenom: prenom,
+                    adresse: adresse,
+                    codePostal: codePostal,
+                    ville: ville,
+                    telephone: telephone,
+                    email: email,
+                    urgence: {
+                        nom: urgenceNom,
+                        prenom: urgencePrenom,
+                        telephone: urgenceTel
+                    },
+                    reglements: reglementsValides,
+                    date: dateInscription,
                     id: Date.now().toString(),
                     source: 'formulaire-public'
-                });
+                };
+                
+                await db.ref('fiches').push(ficheData);
+                console.log('✅ Fiche enregistrée dans Firebase');
+                
+                // Masquer le loading
                 document.getElementById('loading').classList.remove('visible');
+                
+                // Afficher la page de succès
                 document.getElementById('formPage').style.display = 'none';
                 document.getElementById('successPage').classList.add('visible');
-            } catch(e) { document.getElementById('loading').classList.remove('visible'); showAlert('❌ Erreur', 'error'); }
+                
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('loading').classList.remove('visible');
+                showAlert('❌ Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
+            }
         });
         
-        function showAlert(msg, type) {
-            const a = document.getElementById('alert');
-            a.textContent = msg;
-            a.className = 'alert alert-' + type + ' visible';
-            setTimeout(() => a.classList.remove('visible'), 4000);
+        // =============================================
+        // ALERT
+        // =============================================
+        function showAlert(message, type) {
+            const alert = document.getElementById('alert');
+            alert.textContent = message;
+            alert.className = 'alert alert-' + type + ' visible';
+            setTimeout(() => alert.classList.remove('visible'), 4000);
         }
     </script>
 </body>
