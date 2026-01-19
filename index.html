@@ -482,7 +482,12 @@
                 
                 <div id="adminContentSection" style="display: none;">
                     <div class="admin-help">
-                        💡 <strong>Formatage :</strong> Utilisez <code>-</code> au début d'une ligne pour une liste • <code>⚠️</code> pour un avertissement orange • <code>❌</code> pour une interdiction rouge
+                        💡 <strong>Formatage :</strong><br>
+                        • Titres : commencez par un emoji (🗓️ 🎫 🎣 ⛔ 👮)<br>
+                        • Listes : commencez la ligne par <code>-</code><br>
+                        • Avertissement orange : commencez par <code>⚠️</code><br>
+                        • Interdiction : commencez par <code>❌</code><br>
+                        • Ligne vide = nouveau paragraphe
                     </div>
                     
                     <div class="admin-tabs">
@@ -492,26 +497,24 @@
                     </div>
                     
                     <div class="admin-tab-content active" id="tabCarpodrome">
-                        <div class="admin-section"><h4>🗓️ Périodes et horaires</h4><textarea id="carpodrome_horaires"></textarea></div>
-                        <div class="admin-section"><h4>🎫 Tarifs</h4><textarea id="carpodrome_tarifs"></textarea></div>
-                        <div class="admin-section"><h4>🎣 Modalités de pêche</h4><textarea id="carpodrome_modalites"></textarea></div>
-                        <div class="admin-section"><h4>⛔ Interdictions</h4><textarea id="carpodrome_interdictions"></textarea></div>
-                        <div class="admin-section"><h4>👮 Sanctions</h4><textarea id="carpodrome_sanctions"></textarea></div>
+                        <div class="admin-section">
+                            <h4>📄 Règlement complet Carpodrome</h4>
+                            <textarea id="carpodrome_contenu" style="min-height: 400px;"></textarea>
+                        </div>
                     </div>
                     
                     <div class="admin-tab-content" id="tabHardt">
-                        <div class="admin-section"><h4>🗓️ Périodes et horaires</h4><textarea id="hardt_horaires"></textarea></div>
-                        <div class="admin-section"><h4>🎫 Tarifs</h4><textarea id="hardt_tarifs"></textarea></div>
-                        <div class="admin-section"><h4>🎣 Modalités de pêche</h4><textarea id="hardt_modalites"></textarea></div>
-                        <div class="admin-section"><h4>⛔ Interdictions</h4><textarea id="hardt_interdictions"></textarea></div>
-                        <div class="admin-section"><h4>👮 Sanctions</h4><textarea id="hardt_sanctions"></textarea></div>
+                        <div class="admin-section">
+                            <h4>📄 Règlement complet Hardt</h4>
+                            <textarea id="hardt_contenu" style="min-height: 400px;"></textarea>
+                        </div>
                     </div>
                     
                     <div class="admin-tab-content" id="tabBreitmatt">
-                        <div class="admin-section"><h4>🗓️ Périodes et horaires</h4><textarea id="breitmatt_horaires"></textarea></div>
-                        <div class="admin-section"><h4>🎣 Règles générales</h4><textarea id="breitmatt_regles"></textarea></div>
-                        <div class="admin-section"><h4>⛔ Interdictions</h4><textarea id="breitmatt_interdictions"></textarea></div>
-                        <div class="admin-section"><h4>👮 Sanctions</h4><textarea id="breitmatt_sanctions"></textarea></div>
+                        <div class="admin-section">
+                            <h4>📄 Règlement complet Breitmatt</h4>
+                            <textarea id="breitmatt_contenu" style="min-height: 400px;"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -553,23 +556,19 @@
         
         function generateReglementHTML(type) {
             if (!reglementsData || !reglementsData[type]) return '<p style="text-align:center;color:#999;">Règlement non disponible</p>';
-            const data = reglementsData[type];
-            let html = '';
-            const sections = [
-                { key: 'horaires', title: '🗓️ Périodes et horaires' },
-                { key: 'tarifs', title: '🎫 Tarifs' },
-                { key: 'modalites', title: '🎣 Modalités de pêche' },
-                { key: 'regles', title: '🎣 Règles générales' },
-                { key: 'interdictions', title: '⛔ Interdictions' },
-                { key: 'sanctions', title: '👮 Sanctions' }
-            ];
-            sections.forEach(section => {
-                if (data[section.key]) {
-                    html += `<h3>${section.title}</h3>`;
-                    html += formatText(data[section.key]);
-                }
-            });
-            return html;
+            const contenu = reglementsData[type].contenu || reglementsData[type];
+            if (typeof contenu === 'string') {
+                return formatText(contenu);
+            }
+            // Ancien format avec sections séparées - on les concatène
+            let text = '';
+            if (contenu.horaires) text += contenu.horaires + '\n\n';
+            if (contenu.tarifs) text += contenu.tarifs + '\n\n';
+            if (contenu.modalites) text += contenu.modalites + '\n\n';
+            if (contenu.regles) text += contenu.regles + '\n\n';
+            if (contenu.interdictions) text += contenu.interdictions + '\n\n';
+            if (contenu.sanctions) text += contenu.sanctions;
+            return formatText(text);
         }
         
         function formatText(text) {
@@ -579,17 +578,32 @@
             let inList = false;
             lines.forEach(line => {
                 line = line.trim();
-                if (!line) return;
-                if (line.startsWith('-')) {
+                if (!line) {
+                    if (inList) { html += '</ul>'; inList = false; }
+                    return;
+                }
+                // Titre avec emoji (ex: 🗓️ PÉRIODES ET HORAIRES)
+                if (/^[🗓️🎫🎣⛔👮👶🗑️🚨📋]/.test(line) && !line.startsWith('-') && !line.startsWith('⚠️') && !line.startsWith('❌') && line.length < 100) {
+                    if (inList) { html += '</ul>'; inList = false; }
+                    html += `<h3>${line}</h3>`;
+                }
+                // Ligne commence par -
+                else if (line.startsWith('-')) {
                     if (!inList) { html += '<ul>'; inList = true; }
                     html += `<li>${line.substring(1).trim()}</li>`;
-                } else if (line.startsWith('⚠️')) {
+                }
+                // Ligne commence par ⚠️
+                else if (line.startsWith('⚠️')) {
                     if (inList) { html += '</ul>'; inList = false; }
                     html += `<div class="important">${line}</div>`;
-                } else if (line.startsWith('❌')) {
+                }
+                // Ligne commence par ❌
+                else if (line.startsWith('❌')) {
                     if (!inList) { html += '<ul>'; inList = true; }
                     html += `<li>${line}</li>`;
-                } else {
+                }
+                // Ligne normale
+                else {
                     if (inList) { html += '</ul>'; inList = false; }
                     html += `<p>${line}</p>`;
                 }
@@ -717,50 +731,67 @@
         
         function loadAdminContent() {
             if (!reglementsData) return;
+            
+            // Carpodrome
             if (reglementsData.carpodrome) {
-                document.getElementById('carpodrome_horaires').value = reglementsData.carpodrome.horaires || '';
-                document.getElementById('carpodrome_tarifs').value = reglementsData.carpodrome.tarifs || '';
-                document.getElementById('carpodrome_modalites').value = reglementsData.carpodrome.modalites || '';
-                document.getElementById('carpodrome_interdictions').value = reglementsData.carpodrome.interdictions || '';
-                document.getElementById('carpodrome_sanctions').value = reglementsData.carpodrome.sanctions || '';
+                const carpo = reglementsData.carpodrome;
+                if (typeof carpo === 'string') {
+                    document.getElementById('carpodrome_contenu').value = carpo;
+                } else if (carpo.contenu) {
+                    document.getElementById('carpodrome_contenu').value = carpo.contenu;
+                } else {
+                    // Ancien format - concaténer les sections
+                    let text = '';
+                    if (carpo.horaires) text += carpo.horaires + '\n\n';
+                    if (carpo.tarifs) text += carpo.tarifs + '\n\n';
+                    if (carpo.modalites) text += carpo.modalites + '\n\n';
+                    if (carpo.interdictions) text += carpo.interdictions + '\n\n';
+                    if (carpo.sanctions) text += carpo.sanctions;
+                    document.getElementById('carpodrome_contenu').value = text.trim();
+                }
             }
+            
+            // Hardt
             if (reglementsData.hardt) {
-                document.getElementById('hardt_horaires').value = reglementsData.hardt.horaires || '';
-                document.getElementById('hardt_tarifs').value = reglementsData.hardt.tarifs || '';
-                document.getElementById('hardt_modalites').value = reglementsData.hardt.modalites || '';
-                document.getElementById('hardt_interdictions').value = reglementsData.hardt.interdictions || '';
-                document.getElementById('hardt_sanctions').value = reglementsData.hardt.sanctions || '';
+                const hardt = reglementsData.hardt;
+                if (typeof hardt === 'string') {
+                    document.getElementById('hardt_contenu').value = hardt;
+                } else if (hardt.contenu) {
+                    document.getElementById('hardt_contenu').value = hardt.contenu;
+                } else {
+                    let text = '';
+                    if (hardt.horaires) text += hardt.horaires + '\n\n';
+                    if (hardt.tarifs) text += hardt.tarifs + '\n\n';
+                    if (hardt.modalites) text += hardt.modalites + '\n\n';
+                    if (hardt.interdictions) text += hardt.interdictions + '\n\n';
+                    if (hardt.sanctions) text += hardt.sanctions;
+                    document.getElementById('hardt_contenu').value = text.trim();
+                }
             }
+            
+            // Breitmatt
             if (reglementsData.breitmatt) {
-                document.getElementById('breitmatt_horaires').value = reglementsData.breitmatt.horaires || '';
-                document.getElementById('breitmatt_regles').value = reglementsData.breitmatt.regles || '';
-                document.getElementById('breitmatt_interdictions').value = reglementsData.breitmatt.interdictions || '';
-                document.getElementById('breitmatt_sanctions').value = reglementsData.breitmatt.sanctions || '';
+                const breit = reglementsData.breitmatt;
+                if (typeof breit === 'string') {
+                    document.getElementById('breitmatt_contenu').value = breit;
+                } else if (breit.contenu) {
+                    document.getElementById('breitmatt_contenu').value = breit.contenu;
+                } else {
+                    let text = '';
+                    if (breit.horaires) text += breit.horaires + '\n\n';
+                    if (breit.regles) text += breit.regles + '\n\n';
+                    if (breit.interdictions) text += breit.interdictions + '\n\n';
+                    if (breit.sanctions) text += breit.sanctions;
+                    document.getElementById('breitmatt_contenu').value = text.trim();
+                }
             }
         }
         
         function saveAdminContent() {
             const allReglements = {
-                carpodrome: {
-                    horaires: document.getElementById('carpodrome_horaires').value.trim(),
-                    tarifs: document.getElementById('carpodrome_tarifs').value.trim(),
-                    modalites: document.getElementById('carpodrome_modalites').value.trim(),
-                    interdictions: document.getElementById('carpodrome_interdictions').value.trim(),
-                    sanctions: document.getElementById('carpodrome_sanctions').value.trim()
-                },
-                hardt: {
-                    horaires: document.getElementById('hardt_horaires').value.trim(),
-                    tarifs: document.getElementById('hardt_tarifs').value.trim(),
-                    modalites: document.getElementById('hardt_modalites').value.trim(),
-                    interdictions: document.getElementById('hardt_interdictions').value.trim(),
-                    sanctions: document.getElementById('hardt_sanctions').value.trim()
-                },
-                breitmatt: {
-                    horaires: document.getElementById('breitmatt_horaires').value.trim(),
-                    regles: document.getElementById('breitmatt_regles').value.trim(),
-                    interdictions: document.getElementById('breitmatt_interdictions').value.trim(),
-                    sanctions: document.getElementById('breitmatt_sanctions').value.trim()
-                }
+                carpodrome: { contenu: document.getElementById('carpodrome_contenu').value.trim() },
+                hardt: { contenu: document.getElementById('hardt_contenu').value.trim() },
+                breitmatt: { contenu: document.getElementById('breitmatt_contenu').value.trim() }
             };
             db.ref('reglements_formulaire').set(allReglements)
                 .then(() => { reglementsData = allReglements; closeAdminModal(); showAlert('✅ Règlements enregistrés !', 'success'); })
